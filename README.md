@@ -58,9 +58,9 @@ Open the application on your browser `127.0.0.1:8000`.
    -->
 ## Technology used  
   
-* [JavaScript](https://www.python.org/)  
-* [CSS](https://docs.djangoproject.com/en/2.2/)  
-* [HTML](https://heroku.com)  
+* [JavaScript](https://www.javascript.com/)  
+* [CSS](https://www.w3schools.com/css/)  
+* [HTML](https://www.w3schools.com/html)  
   
   
 ## Known Bugs  
