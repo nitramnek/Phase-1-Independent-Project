@@ -2,12 +2,11 @@
 >Developed by [Ken Wanguka](https://github.com/nitramnek)  
   
 ## Description  
->An application where a doctors can sign in, retrieve patients data, add Symptoms Return probable Diagnosis for treatment. Like my project and leave a comment on it.
+>An application where a doctors can sign in, retrieve patients data, add Symptoms and Return probable diagnosis for treatment. Like my project and leave a comment on it.
 
 ##  Live Link  
 >[View Site](https://nitramnek.com)  to visit the site
   
-
 ## User Story  
   
 * Doctor sign in to load the dash board.
@@ -43,7 +42,7 @@ python manage.py makemigrations gram_app
  ```bash 
  python manage.py migrate 
 ``` -->
-##### Super User Credentials 
+##### Demo User Credentials 
 * username - Kenwanguka
 * password -  Kenwanguka
 
@@ -63,7 +62,6 @@ Open the application on your browser `127.0.0.1:8000`.
 * [CSS](https://www.w3schools.com/css/)  
 * [HTML](https://www.w3schools.com/html)  
   
-
 ## Known Bugs  
 * There are no known bugs currently but pull requests are allowed incase you spot a bug  
   
@@ -72,5 +70,5 @@ If you have any question or contributions, please email me at [kenwanguka@gmail.
   
 ## License 
 
-[![License](https://img.shields.io/packagist/l/loopline-systems/closeio-api-wrapper.svg)](https://github.com/nitramnek/gram/blob/master/LICENSE)  
+[![License](https://img.shields.io/packagist/l/loopline-systems/closeio-api-wrapper.svg)](https://github.com/nitramnek/Phase-1-Independent-Project/blob/master/LICENSE)  
 >Copyright (c) 2022 **Ken Wanguka**
