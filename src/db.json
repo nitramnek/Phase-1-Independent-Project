@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "username": "DemoUser",
+      "password": "password123"
+    },
+    {
+      "username": "kenwanguka",
+      "password": "kenwanguka"
+    },
+    {
+      "username": "kenwanguka@gmail.com",
+      "password": "kenwanguka@gmail.com"
+    }
+  ]
+}
