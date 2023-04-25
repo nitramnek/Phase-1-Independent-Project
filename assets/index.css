@@ -44,6 +44,7 @@ body {
   
   form {
     width: 70%;
+    min-height: 100%;
     margin: 10% auto;
     position: relative;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -52,7 +53,7 @@ body {
   input[type="text"],
   input[type="password"] {
     width: 98%;
-    height: 30px;
+    height: 25px ;
     border-radius: 10px;
     background-color: #f5f5f5;
     border-bottom: 1px solid #e3e3e3;
