@@ -1,4 +1,4 @@
-# gram
+# MediCare
 >Developed by [Ken Wanguka](https://github.com/nitramnek)  
   
 ## Description  
@@ -10,9 +10,10 @@
 
 ## User Story  
   
-* Sign in to the application to start using.
-* Add patients symptoms to the application.
-* Return Patients Diagnosis .
+* Doctor sign in to load the dash board.
+* Select Patient to load patient info Chart.
+* Add patients symptoms to Patient Chart.
+* Submit to return patients diagnosis.
     
 ## Setup and Installation  
 To get the project .......  
@@ -57,12 +58,12 @@ python manage.py makemigrations gram_app
 Open the application on your browser `127.0.0.1:8000`.  
    -->
 ## Technology used  
-* [Figma] (https://www.figma.com/file/rkoAAMxMVJF4pFKAbelYMn/Sign-up-page-(Community)?node-id=106%3A2&t=q45LoEcPI2WEms6Y-1)
+* [Figma](https://www.figma.com/file/rkoAAMxMVJF4pFKAbelYMn/Sign-up-page-(Community)?node-id=0-1&t=v2odXibGaFP7sD0I-0)
 * [JavaScript](https://www.javascript.com/)  
 * [CSS](https://www.w3schools.com/css/)  
 * [HTML](https://www.w3schools.com/html)  
   
-        
+
 ## Known Bugs  
 * There are no known bugs currently but pull requests are allowed incase you spot a bug  
   
