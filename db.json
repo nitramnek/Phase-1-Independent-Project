@@ -1,5 +1,5 @@
 {
-  "users": [
+  "doctors": [
     {
       "username": "DemoUser",
       "password": "password123"
@@ -12,6 +12,57 @@
       "username": "kenwanguka@gmail.com",
       "password": "kenwanguka@gmail.com"
     }
+  ],
+  "patients": [
+    {
+      "id": "object_uid",
+      "firstName": "John",
+      "lastName": "Doe",
+      "gender": "male",
+      "age": 32,
+      "temp": 36,
+      "BP": "100/60",
+      "elment": "Taiphoid"
+    },
+    {
+      "id": "object_uid",
+      "firstName": "Mary",
+      "lastName": "Jane",
+      "gender": "female",
+      "age": 25,
+      "temp": 32,
+      "BP": "80/60",
+      "elment": "Malaria"
+    },
+    {
+      "id": "object_uid",
+      "firstName": "Awino",
+      "lastName": "Hope",
+      "gender": "female",
+      "age": 5,
+      "temp": 35.5,
+      "BP": "79/58",
+      "elment": "Pneumonia"
+    },
+    {
+      "id": "object_uid",
+      "firstName": "Brian",
+      "lastName": "Mwangi",
+      "gender": "Male",
+      "age": 45,
+      "temp": 38,
+      "BP": "98/70",
+      "elment": "Tubaculosis"
+    },
+    {
+      "id": "object_uid",
+      "firstName": "Patricia",
+      "lastName": "Cheptoo",
+      "gender": "female",
+      "age": 17,
+      "temp": 40,
+      "BP": "130/90",
+      "elment": "Degue"
+    }
   ]
 }
-

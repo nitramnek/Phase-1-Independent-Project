@@ -16,14 +16,14 @@ button.addEventListener('click', function(event) {
   const username = usernameInput.value;
   const password = passwordInput.value;
 
-   // Fetch the users from the db.json file
+   // Fetch the doctors from the db.json file
   fetch('db.json')
     .then(response => response.json())
     .then(data => {
-      const users = data.users;
+      const doctors = data.doctors;
 
       // Check if the username and password are valid
-      const validUser = users.find(user => user.username === username && user.password === password);
+      const validUser = doctors.find(user => user.username === username && user.password === password);
 
       if (!validUser) {
         // If the username and password are invalid, display an error message
@@ -45,7 +45,7 @@ button.addEventListener('click', function(event) {
 
 
 // //API Version
-// const apiUrl = 'http://localhost:3000/users';
+// const apiUrl = 'http://localhost:3000/doctors';
 
 // // Get the form element
 // const form = document.querySelector('.signIn');
@@ -67,7 +67,7 @@ button.addEventListener('click', function(event) {
 //     .then(response => response.json())
 //     .then(data => {
 //       // Check if the username and password are valid (for example, you could check them against the data from the API)
-//       const isValidUser = data.users.some(user => user.username === username && user.password === password);
+//       const isValidUser = data.doctors.some(user => user.username === username && user.password === password);
 
 //       if (isValidUser) {
 //         // If the username and password are valid, display a success message
