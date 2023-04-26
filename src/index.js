@@ -1,64 +1,110 @@
+//k3n5c0d3
+const apiUrl = 'http://localhost:3000';
+
+// Doctor-related code
 const signInForm = document.querySelector('.signIn');
 const dashboard = document.querySelector('#dashboard');
 const doctorNameSpan = document.querySelector('#doctorName');
-const patientsDeu = document.querySelector('#patientsDeu');
-const patientsTreaded = document.querySelector('#patientsTreated');
+
+async function signInDoctor(username, password) {
+  try {
+    const response = await fetch(`${apiUrl}/doctors`);
+    const doctors = await response.json();
+    const doctor = doctors.find(d => d.username === username && d.password === password);
+    return doctor;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while signing in. Please try again later.');
+  }
+}
 
 function displayDashboard(doctor) {
   doctorNameSpan.textContent = doctor.displayname;
-  patientsDeu.innerHTML = '';
-  patientsTreaded.innerHTML = '';
-  fetch('http://localhost:3000/patients')
-    .then(response => response.json())
-    .then(patients => {
-      patients.forEach(patient => {
-        if (!patient.treated) {
-          const li = document.createElement('li');
-          li.textContent = patient.firstName + ' ' + patient.lastName;
-          patientsDeu.appendChild(li);
-        } else {
-          const li = document.createElement('li');
-          li.textContent = patient.firstName + ' ' + patient.lastName;
-          patientsTreaded.appendChild(li);
-        }
-      });
-    })
-    .catch(error => {
-      console.error(error);
-      const message = document.createElement('div');
-      message.textContent = 'An error occurred. Please try again later.';
-      message.classList.add('message', 'error');
-      signInForm.appendChild(message);
-    });
   signInForm.style.display = 'none';
   dashboard.style.display = 'block';
 }
 
-signInForm.addEventListener('submit', event => {
+signInForm.addEventListener('submit', async event => {
   event.preventDefault();
   const username = event.target.username.value;
   const password = event.target.password.value;
-  fetch('http://localhost:3000/doctors')
-    .then(response => response.json())
-    .then(doctors => {
-      const doctor = doctors.find(d => d.username === username && d.password === password);
-      if (doctor) {
-        displayDashboard(doctor);
-      } else {
-        const message = document.createElement('div');
-        message.textContent = 'Invalid username or password.';
-        message.classList.add('message', 'error');
-        signInForm.appendChild(message);
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      const message = document.createElement('div');
-      message.textContent = 'An error occurred. Please try again later.';
-      message.classList.add('message', 'error');
-      signInForm.appendChild(message);
-    });
+  try {
+    const doctor = await signInDoctor(username, password);
+    if (doctor) {
+      displayDashboard(doctor);
+    } else {
+      throw new Error('Invalid username or password.');
+    }
+  } catch (error) {
+    console.error(error);
+    const message = document.createElement('div');
+    message.textContent = error.message;
+    message.classList.add('message', 'error');
+    signInForm.appendChild(message);
+  }
 });
+
+// Patient-related code
+const patientsDeu = document.querySelector('#patientsDeu');
+const patientsTreaded = document.querySelector('#patientsTreated');
+const patientDetails = document.querySelector('#patientDetails');
+
+async function getPatients() {
+  try {
+    const response = await fetch(`${apiUrl}/patients`);
+    const patients = await response.json();
+    return patients;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while fetching patients. Please try again later.');
+  }
+}
+
+function displayPatients(patients) {
+  patientsDeu.innerHTML = '';
+  patientsTreaded.innerHTML = '';
+  patients.forEach(patient => {
+    const li = document.createElement('li');
+    li.textContent = patient.firstName + ' ' + patient.lastName;
+    li.addEventListener('click', () => displayPatientDetails(patient));
+    li.style.cursor = 'pointer'; // Add this line to change cursor to pointer
+    if (!patient.treated) {
+      patientsDeu.appendChild(li);
+    } else {
+      patientsTreaded.appendChild(li);
+    }
+  });
+}
+
+function displayPatientDetails(patient) {
+  const details = `
+    <ul>
+      <li>Name: ${patient.firstName} ${patient.lastName}</li>
+      <li>Gender: ${patient.gender}</li>
+      <li>Age: ${patient.age}</li>
+      <li>Temperature: ${patient.temp}C</li>
+      <li>Blood Pressure: ${patient.BP}</li>
+      <li>Illness: ${patient.elment}</li>
+      <li>Treated: ${patient.treated ? 'Yes' : 'No'}</li>
+    </ul>
+  `;
+  patientDetails.innerHTML = details;
+}
+
+(async function() {
+  try {
+    const patients = await getPatients();
+    displayPatients(patients);
+  } catch (error) {
+    console.error(error);
+    const message = document.createElement('div');
+    message.textContent = error.message;
+    message.classList.add('message', 'error');
+    dashboard.appendChild(message);
+  }
+})();
+
+
 
 
 

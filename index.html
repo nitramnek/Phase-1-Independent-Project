@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare Diagnosis APP</title>
+    <link rel="stylesheet" href="assets/index.css">
+  </head>
+  <body>
+    <div class="theme">
+      <div class="landing">
+        <div class="item">
+          <h2 class="ui header">
+            <i class="orange ticket icon"></i>
+            <div class="content">MediCare Diagnosis APP</div>
+            <div class="sub header" id="subtitle">We care about our Patients</div>
+          </h2>
+          <form class="signIn">
+            <legend>Sign In</legend>
+            <label for="username">Username:</label>
+            <input class="input-field" type="text" placeholder="Username" name="username" id="username">
+            <br><br>
+            <label for="password">Password:</label>
+            <input class="input-field" type="password" placeholder="Password" name="password" id="password">
+            <br><br>
+            <input type="submit" value="Sign In">
+          </form>
+          <div id="dashboard" style="display: none;">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MediCare Diagnosis APP</title>
-  <link rel="stylesheet" href="assets/index.css">
-</head>
+         
 
-<body>
-  <div class="theme">
-    <div class="landing">
-      <div class="item">
-        <h2 class="ui header">
-          <i class="orange ticket icon"></i>
-          <div class="content">MediCare Diagnosis APP</div>
-          <div class="sub header" id="subtitle">We care about our Patients</div>
-        </h2>
-        <form class="signIn">
-          <legend>Sign In</legend>
-          <label for="username">Username:</label>
-          <input class="input-field" type="text" placeholder="Username" name="username" id="username">
-          <br><br>
-          <label for="password">Password:</label>
-          <input class="input-field" type="password" placeholder="Password" name="password" id="password">
-          <br><br>
-          <input type="submit" value="Sign In">
-        </form>
-        <div id="dashboard" style="display: none;">
-          <h3>Welcome, <span id="doctorName"></span>!</h3>
-          <h4>Here is the list of Patients on your Que Today:</h4>
-          <ul id="patientsDeu"></ul>
-          <h4>Here is the list of Patients Previousely Treated:</h4>
-          <ul id="patientsTreated"></ul>
+            <h2>Welcome, <span id="doctorName"></span>!</h2>
+            
+            <h3>Here is the list of Patients on your Queue Today:</h3>
+            <span style="display:inline-block;width:35%;text-align:left;">
+            <ol id="patientsDeu"></ol></span><span style="display:inline-block;width:20%;"></span>
+            <span style="display:inline-block;width:35%;text-align:left;" id="patientDetails">Please Pick a Patient</span>
+            <h3>Here is the list of Patients Previously Treated:</h3>
+            <ol id="patientsTreated"></ol>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
-  <script src="src/index.js"></script>
-</body>
-
+    <script src="src/index.js"></script>
+  </body>
 </html>
-
