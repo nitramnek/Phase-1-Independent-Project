@@ -16,7 +16,7 @@
         <h2 class="ui header">
           <i class="orange ticket icon"></i>
           <div class="content">MediCare Diagnosis APP</div>
-          <div class="sub header" id="subtitle">Select Patient</div>
+          <div class="sub header" id="subtitle">We care about our Patients</div>
         </h2>
         <form class="signIn">
           <legend>Sign In</legend>
@@ -28,6 +28,13 @@
           <br><br>
           <input type="submit" value="Sign In">
         </form>
+        <div id="dashboard" style="display: none;">
+          <h3>Welcome, <span id="doctorName"></span>!</h3>
+          <h4>Here is the list of Patients on your Que Today:</h4>
+          <ul id="patientsDeu"></ul>
+          <h4>Here is the list of Patients Previousely Treated:</h4>
+          <ul id="patientsTreated"></ul>
+        </div>
       </div>
     </div>
   </div>
@@ -35,3 +42,4 @@
 </body>
 
 </html>
+
