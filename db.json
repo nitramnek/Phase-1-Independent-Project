@@ -1,14 +1,19 @@
 {
   "doctors": [
     {
+      
+      "displayname": "DR. Demo User",
       "username": "DemoUser",
       "password": "password123"
     },
     {
+
+      "displayname": "DR. Ken Wanguka",
       "username": "kenwanguka",
       "password": "kenwanguka"
     },
     {
+      "displayname": "DR. Wanguka Ken",      
       "username": "kenwanguka@gmail.com",
       "password": "kenwanguka@gmail.com"
     }
