@@ -1,4 +1,5 @@
 //k3n5c0d3
+//k3n5c0d3
 const apiUrl = 'http://localhost:3000';
 
 // Doctor-related code
@@ -32,6 +33,8 @@ signInForm.addEventListener('submit', async event => {
     const doctor = await signInDoctor(username, password);
     if (doctor) {
       displayDashboard(doctor);
+      const patients = await getPatients();
+      displayPatients(patients);
     } else {
       throw new Error('Invalid username or password.');
     }
@@ -60,6 +63,23 @@ async function getPatients() {
   }
 }
 
+async function updatePatient(id, updatedData) {
+  try {
+    const response = await fetch(`${apiUrl}/patients/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedData)
+    });
+    const updatedPatient = await response.json();
+    return updatedPatient;
+  } catch (error) {
+    console.error(error);
+    throw new Error('An error occurred while updating the patient. Please try again later.');
+  }
+}
+
 function displayPatients(patients) {
   patientsDeu.innerHTML = '';
   patientsTreaded.innerHTML = '';
@@ -67,7 +87,7 @@ function displayPatients(patients) {
     const li = document.createElement('li');
     li.textContent = patient.firstName + ' ' + patient.lastName;
     li.addEventListener('click', () => displayPatientDetails(patient));
-    li.style.cursor = 'pointer'; // Add this line to change cursor to pointer
+    li.style.cursor = 'pointer';
     if (!patient.treated) {
       patientsDeu.appendChild(li);
     } else {
@@ -75,34 +95,58 @@ function displayPatients(patients) {
     }
   });
 }
-
 function displayPatientDetails(patient) {
-  const details = `
-    <ul>
-      <li>Name: ${patient.firstName} ${patient.lastName}</li>
-      <li>Gender: ${patient.gender}</li>
-      <li>Age: ${patient.age}</li>
-      <li>Temperature: ${patient.temp}C</li>
-      <li>Blood Pressure: ${patient.BP}</li>
-      <li>Illness: ${patient.elment}</li>
-      <li>Treated: ${patient.treated ? 'Yes' : 'No'}</li>
-    </ul>
-  `;
-  patientDetails.innerHTML = details;
-}
-
-(async function() {
-  try {
-    const patients = await getPatients();
-    displayPatients(patients);
-  } catch (error) {
-    console.error(error);
-    const message = document.createElement('div');
-    message.textContent = error.message;
-    message.classList.add('message', 'error');
-    dashboard.appendChild(message);
+    const details = `
+      <ul>
+        <li>Name: ${patient.firstName} ${patient.lastName}</li>
+        <li>Gender: ${patient.gender}</li>
+        <li>Age: ${patient.age}</li>
+        <li>Temperature: ${patient.temp}C</li>
+        <li>Blood Pressure: ${patient.BP}</li>
+        <li>Illness: ${patient.elment}</li>
+        <li>Treated: ${patient.treated ? 'Yes' : 'No'}</li>
+      </ul>
+      <form id="updateSymptoms">
+        <h3>Update Patient Symptoms:</h3>
+        <label for="symptoms">Symptoms:</label>
+        <input type="text" name="symptoms" id="symptoms" required>
+        <br>
+        <button type="submit">Update</button>
+      </form>
+    `;
+    patientDetails.innerHTML = details;
+    const updateSymptomsForm = document.querySelector('#updateSymptoms');
+    updateSymptomsForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const symptoms = event.target.symptoms.value;
+      const patientId = patient.id;
+      try {
+        const response = await fetch(`${apiUrl}/patients/${patientId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            symptoms: symptoms,
+            treated: true
+          })
+        });
+        const updatedPatient = await response.json();
+        patientDetails.innerHTML = '';
+        displayPatients(await getPatients());
+        console.log(updatedPatient);
+      } catch (error) {
+        console.error(error);
+        const message = document.createElement('div');
+        message.textContent = error.message;
+        message.classList.add('message', 'error');
+        patientDetails.appendChild(message);
+      }
+    });
   }
-})();
+  
+
+  
 
 
 
