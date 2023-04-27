@@ -57,7 +57,7 @@ python manage.py makemigrations gram_app
 Open the application on your browser `127.0.0.1:8000`.  
    -->
 ## Technology used  
-* [Figma](https://www.figma.com/file/rkoAAMxMVJF4pFKAbelYMn/Sign-up-page-(Community)?node-id=0-1&t=v2odXibGaFP7sD0I-0)
+* [Prototype on Figma](https://www.figma.com/file/rkoAAMxMVJF4pFKAbelYMn/Sign-up-page-(Community)?node-id=0-1&t=v2odXibGaFP7sD0I-0)
 * [JavaScript](https://www.javascript.com/)  
 * [CSS](https://www.w3schools.com/css/)  
 * [HTML](https://www.w3schools.com/html)  

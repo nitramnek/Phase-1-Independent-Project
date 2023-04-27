@@ -103,9 +103,9 @@ body {
 
 #patientDetails {
     background: #2ec9f7;
-    width:auto;
+    width:fit-content;
     font-family: Arial, Helvetica, sans-serif;
-    height:max-content ;
+    height:fit-content ;
 }
  
 ul {

@@ -18,7 +18,11 @@
   ],
   "patients": [
     {
-      "symptoms": "vomiting",
+      "symptoms": [
+        "Fever",
+        "Cough",
+        "Shortness of breath"
+      ],
       "treated": true,
       "id": "object_uid"
     },

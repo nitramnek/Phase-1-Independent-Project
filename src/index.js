@@ -1,5 +1,4 @@
 //k3n5c0d3
-//k3n5c0d3
 const apiUrl = 'http://localhost:3000';
 
 // Doctor-related code
@@ -96,54 +95,68 @@ function displayPatients(patients) {
   });
 }
 function displayPatientDetails(patient) {
-    const details = `
-      <ul>
-        <li>Name: ${patient.firstName} ${patient.lastName}</li>
-        <li>Gender: ${patient.gender}</li>
-        <li>Age: ${patient.age}</li>
-        <li>Temperature: ${patient.temp}C</li>
-        <li>Blood Pressure: ${patient.BP}</li>
-        <li>Illness: ${patient.elment}</li>
-        <li>Treated: ${patient.treated ? 'Yes' : 'No'}</li>
-      </ul>
-      <form id="updateSymptoms">
-        <h3>Update Patient Symptoms:</h3>
-        <label for="symptoms">Symptoms:</label>
-        <input type="text" name="symptoms" id="symptoms" required>
-        <br>
-        <button type="submit">Update</button>
-      </form>
-    `;
-    patientDetails.innerHTML = details;
-    const updateSymptomsForm = document.querySelector('#updateSymptoms');
-    updateSymptomsForm.addEventListener('submit', async event => {
-      event.preventDefault();
-      const symptoms = event.target.symptoms.value;
-      const patientId = patient.id;
-      try {
-        const response = await fetch(`${apiUrl}/patients/${patientId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            symptoms: symptoms,
-            treated: true
-          })
-        });
-        const updatedPatient = await response.json();
-        patientDetails.innerHTML = '';
-        displayPatients(await getPatients());
-        console.log(updatedPatient);
-      } catch (error) {
-        console.error(error);
-        const message = document.createElement('div');
-        message.textContent = error.message;
-        message.classList.add('message', 'error');
-        patientDetails.appendChild(message);
+  const details = `
+    <ul>
+      <li>Name: ${patient.firstName} ${patient.lastName}</li>
+      <li>Gender: ${patient.gender}</li>
+      <li>Age: ${patient.age}</li>
+      <li>Temperature: ${patient.temp}C</li>
+      <li>Blood Pressure: ${patient.BP}</li>
+      <li>Illness: ${patient.elment}</li>
+      <li>Treated: ${patient.treated ? 'Yes' : 'No'}</li>
+    </ul>
+    <form id="updateSymptoms">
+      <h3>Update Patient Symptoms:</h3>
+      <label>Symptoms:</label>
+      <br>
+      <input type="checkbox" name="symptoms" value="Fever">Fever</input>
+      <br>
+      <input type="checkbox" name="symptoms" value="Cough">Cough</input>
+      <br>
+      <input type="checkbox" name="symptoms" value="Shortness of breath">Shortness of breath</input>
+      <br>
+      <input type="checkbox" name="symptoms" value="Fatigue">Fatigue</input>
+      <br>
+      <button type="submit">Update</button>
+    </form>
+  `;
+  patientDetails.innerHTML = details;
+  const updateSymptomsForm = document.querySelector('#updateSymptoms');
+  updateSymptomsForm.addEventListener('submit', async event => {
+    event.preventDefault();
+    const symptoms = [];
+    const checkboxes = event.target.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        symptoms.push(checkbox.value);
       }
     });
-  }
+    const patientId = patient.id;
+    try {
+      const response = await fetch(`${apiUrl}/patients/${patientId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          symptoms: symptoms,
+          treated: true
+        })
+      });
+      const updatedPatient = await response.json();
+      patientDetails.innerHTML = '';
+      displayPatients(await getPatients());
+      console.log(updatedPatient);
+    } catch (error) {
+      console.error(error);
+      const message = document.createElement('div');
+      message.textContent = error.message;
+      message.classList.add('message', 'error');
+      patientDetails.appendChild(message);
+    }
+  });
+}
+
   
 
   
