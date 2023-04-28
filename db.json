@@ -6,61 +6,43 @@
       "password": "password123"
     },
     {
-      "displayname": "Dr. Ken Wanguka",
-      "username": "kenwanguka",
-      "password": "kenwanguka"
+      "displayname": "Dr. Juliet Muturi",
+      "username": "jmuturi",
+      "password": "jmuturi"
     },
     {
       "displayname": "Dr. Wanguka Ken",
-      "username": "kenwanguka@gmail.com",
-      "password": "kenwanguka@gmail.com"
+      "username": "kenwanguka",
+      "password": "kenwanguka"
     }
   ],
   "patients": [
     {
-      "symptoms": [
-        "Fever",
-        "Cough",
-        "Shortness of breath"
-      ],
+      "id": "001",
+      "firstName": "Awino",
+      "lastName": "Hope",
+      "gender": "female",
+      "age": 5,
+      "temp": 35.5,
+      "BP": "79/58",
+      "elment": "Pneumonia",
       "treated": true,
-      "id": "object_uid"
+      "symptoms": []
     },
     {
-      "id": "object_uid",
-      "firstName": "Mary",
-      "lastName": "Jane",
+      "id": "002",
+      "firstName": "Damaris",
+      "lastName": "Amolo",
       "gender": "female",
-      "age": 25,
-      "temp": 32,
-      "BP": "80/60",
-      "elment": "Malaria",
-      "treated": false
+      "age": 31,
+      "temp": 35,
+      "BP": "120/80",
+      "elment": "Covid",
+      "treated": true,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
-      "firstName": "Awino",
-      "lastName": "Hope",
-      "gender": "female",
-      "age": 5,
-      "temp": 35.5,
-      "BP": "79/58",
-      "elment": "Pneumonia",
-      "treated": true
-    },
-    {
-      "id": "object_uid",
-      "firstName": "Brian",
-      "lastName": "Mwangi",
-      "gender": "Male",
-      "age": 45,
-      "temp": 38,
-      "BP": "98/70",
-      "elment": "Tubaculosis",
-      "treated": false
-    },
-    {
-      "id": "object_uid",
+      "id": "003",
       "firstName": "Patricia",
       "lastName": "Cheptoo",
       "gender": "female",
@@ -68,10 +50,11 @@
       "temp": 40,
       "BP": "130/90",
       "elment": "Degue",
-      "treated": true
+      "treated": true,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "004",
       "firstName": "John",
       "lastName": "Doe",
       "gender": "male",
@@ -79,10 +62,11 @@
       "temp": 36,
       "BP": "100/60",
       "elment": "Taiphoid",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "005",
       "firstName": "Mary",
       "lastName": "Jane",
       "gender": "female",
@@ -90,10 +74,11 @@
       "temp": 32,
       "BP": "80/60",
       "elment": "Malaria",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "006",
       "firstName": "Awino",
       "lastName": "Hope",
       "gender": "female",
@@ -101,10 +86,11 @@
       "temp": 35.5,
       "BP": "79/58",
       "elment": "Pneumonia",
-      "treated": true
+      "treated": true,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "007",
       "firstName": "Brian",
       "lastName": "Mwangi",
       "gender": "Male",
@@ -112,10 +98,11 @@
       "temp": 38,
       "BP": "98/70",
       "elment": "Tubaculosis",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "008",
       "firstName": "Patricia",
       "lastName": "Cheptoo",
       "gender": "female",
@@ -123,10 +110,11 @@
       "temp": 40,
       "BP": "130/90",
       "elment": "Degue",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "009",
       "firstName": "Patricia",
       "lastName": "Cheptoo",
       "gender": "female",
@@ -134,10 +122,11 @@
       "temp": 40,
       "BP": "130/90",
       "elment": "Degue",
-      "treated": true
+      "treated": true,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "010",
       "firstName": "John",
       "lastName": "Doe",
       "gender": "male",
@@ -145,10 +134,11 @@
       "temp": 36,
       "BP": "100/60",
       "elment": "Taiphoid",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "011",
       "firstName": "Mary",
       "lastName": "Jane",
       "gender": "female",
@@ -156,10 +146,11 @@
       "temp": 32,
       "BP": "80/60",
       "elment": "Malaria",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "012",
       "firstName": "Awino",
       "lastName": "Hope",
       "gender": "female",
@@ -167,10 +158,11 @@
       "temp": 35.5,
       "BP": "79/58",
       "elment": "Pneumonia",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "013",
       "firstName": "Brian",
       "lastName": "Mwangi",
       "gender": "Male",
@@ -178,10 +170,11 @@
       "temp": 38,
       "BP": "98/70",
       "elment": "Tubaculosis",
-      "treated": false
+      "treated": false,
+      "symptoms": []
     },
     {
-      "id": "object_uid",
+      "id": "014",
       "firstName": "Patricia",
       "lastName": "Cheptoo",
       "gender": "female",
@@ -189,7 +182,8 @@
       "temp": 40,
       "BP": "130/90",
       "elment": "Degue",
-      "treated": true
+      "treated": true,
+      "symptoms": []
     }
   ]
 }

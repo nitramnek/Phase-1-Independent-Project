@@ -1,21 +1,32 @@
-//k3n5c0d3
 const apiUrl = 'http://localhost:3000';
-
-// Doctor-related code
 const signInForm = document.querySelector('.signIn');
 const dashboard = document.querySelector('#dashboard');
 const doctorNameSpan = document.querySelector('#doctorName');
+const patientsDeu = document.querySelector('#patientsDeu');
+const patientsTreated = document.querySelector('#patientsTreated');
+const patientDetails = document.querySelector('#patientDetails');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+
 
 async function signInDoctor(username, password) {
-  try {
-    const response = await fetch(`${apiUrl}/doctors`);
-    const doctors = await response.json();
-    const doctor = doctors.find(d => d.username === username && d.password === password);
-    return doctor;
-  } catch (error) {
-    console.error(error);
-    throw new Error('An error occurred while signing in. Please try again later.');
-  }
+  const response = await fetch(`${apiUrl}/doctors`);
+  const doctors = await response.json();
+  return doctors.find(d => d.username === username && d.password === password);
+}
+
+async function getPatients() {
+  const response = await fetch(`${apiUrl}/patients`);
+  return await response.json();
+}
+
+async function updatePatient(id, updatedData) {
+  const response = await fetch(`${apiUrl}/patients/${id}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(updatedData)
+  });
+  return await response.json();
 }
 
 function displayDashboard(doctor) {
@@ -24,64 +35,9 @@ function displayDashboard(doctor) {
   dashboard.style.display = 'block';
 }
 
-signInForm.addEventListener('submit', async event => {
-  event.preventDefault();
-  const username = event.target.username.value;
-  const password = event.target.password.value;
-  try {
-    const doctor = await signInDoctor(username, password);
-    if (doctor) {
-      displayDashboard(doctor);
-      const patients = await getPatients();
-      displayPatients(patients);
-    } else {
-      throw new Error('Invalid username or password.');
-    }
-  } catch (error) {
-    console.error(error);
-    const message = document.createElement('div');
-    message.textContent = error.message;
-    message.classList.add('message', 'error');
-    signInForm.appendChild(message);
-  }
-});
-
-// Patient-related code
-const patientsDeu = document.querySelector('#patientsDeu');
-const patientsTreaded = document.querySelector('#patientsTreated');
-const patientDetails = document.querySelector('#patientDetails');
-
-async function getPatients() {
-  try {
-    const response = await fetch(`${apiUrl}/patients`);
-    const patients = await response.json();
-    return patients;
-  } catch (error) {
-    console.error(error);
-    throw new Error('An error occurred while fetching patients. Please try again later.');
-  }
-}
-
-async function updatePatient(id, updatedData) {
-  try {
-    const response = await fetch(`${apiUrl}/patients/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(updatedData)
-    });
-    const updatedPatient = await response.json();
-    return updatedPatient;
-  } catch (error) {
-    console.error(error);
-    throw new Error('An error occurred while updating the patient. Please try again later.');
-  }
-}
-
 function displayPatients(patients) {
   patientsDeu.innerHTML = '';
-  patientsTreaded.innerHTML = '';
+  patientsTreated.innerHTML = '';
   patients.forEach(patient => {
     const li = document.createElement('li');
     li.textContent = patient.firstName + ' ' + patient.lastName;
@@ -90,10 +46,11 @@ function displayPatients(patients) {
     if (!patient.treated) {
       patientsDeu.appendChild(li);
     } else {
-      patientsTreaded.appendChild(li);
+      patientsTreated.appendChild(li);
     }
   });
 }
+
 function displayPatientDetails(patient) {
   const details = `
     <ul>
@@ -107,46 +64,36 @@ function displayPatientDetails(patient) {
     </ul>
     <form id="updateSymptoms">
       <h3>Update Patient Symptoms:</h3>
-      <label>Symptoms:</label>
-      <br>
-      <input type="checkbox" name="symptoms" value="Fever">Fever</input>
-      <br>
-      <input type="checkbox" name="symptoms" value="Cough">Cough</input>
-      <br>
-      <input type="checkbox" name="symptoms" value="Shortness of breath">Shortness of breath</input>
-      <br>
-      <input type="checkbox" name="symptoms" value="Fatigue">Fatigue</input>
-      <br>
+      <label>
+        Temperature:
+        <input type="number" name="temp" value="${patient.temp}">
+      </label>
+      <label>
+        Blood Pressure:
+        <input type="text" name="BP" value="${patient.BP}">
+      </label>
+      <label>
+        Illness:
+        <input type="text" name="elment" value="${patient.elment}">
+      </label>
       <button type="submit">Update</button>
     </form>
   `;
   patientDetails.innerHTML = details;
-  const updateSymptomsForm = document.querySelector('#updateSymptoms');
-  updateSymptomsForm.addEventListener('submit', async event => {
+  const updateForm = patientDetails.querySelector('#updateSymptoms');
+  updateForm.addEventListener('submit', async event => {
     event.preventDefault();
-    const symptoms = [];
-    const checkboxes = event.target.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        symptoms.push(checkbox.value);
-      }
-    });
-    const patientId = patient.id;
+    const formData = new FormData(updateForm);
+    const updatedPatient = {
+      temp: formData.get('temp'),
+      BP: formData.get('BP'),
+      elment: formData.get('elment'),
+      treated: true
+    };
     try {
-      const response = await fetch(`${apiUrl}/patients/${patientId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          symptoms: symptoms,
-          treated: true
-        })
-      });
-      const updatedPatient = await response.json();
-      patientDetails.innerHTML = '';
+      const patient = await updatePatient(patient.id, updatedPatient);
       displayPatients(await getPatients());
-      console.log(updatedPatient);
+      displayPatientDetails(patient);
     } catch (error) {
       console.error(error);
       const message = document.createElement('div');
@@ -156,10 +103,39 @@ function displayPatientDetails(patient) {
     }
   });
 }
+if (!signInForm || !usernameInput || !passwordInput) {
+  console.error('One or more form elements not found');
+}
 
-  
+signInForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const username = usernameInput.value;
+  const password = passwordInput.value;
 
-  
+  try {
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+    const data = await response.json();
+    if (response.ok) {
+      // Login was successful
+      window.location.href = '/dashboard';
+    } else {
+      // Login failed
+      const error = new Error(data.message || 'Unable to sign in');
+      throw error;
+    }
+  } catch (error) {
+    console.error(error);
+    alert(error.message);
+  }
+});
+
+
 
 
 
