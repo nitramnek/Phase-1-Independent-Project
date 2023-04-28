@@ -162,16 +162,12 @@
       "symptoms": []
     },
     {
-      "id": "013",
-      "firstName": "Brian",
-      "lastName": "Mwangi",
-      "gender": "Male",
-      "age": 45,
-      "temp": 38,
-      "BP": "98/70",
-      "elment": "Tubaculosis",
-      "treated": false,
-      "symptoms": []
+      "symptoms": [
+        "Fever",
+        "Cough"
+      ],
+      "treated": true,
+      "id": "013"
     },
     {
       "id": "014",
