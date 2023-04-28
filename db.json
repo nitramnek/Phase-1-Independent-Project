@@ -126,16 +126,12 @@
       "symptoms": []
     },
     {
-      "id": "010",
-      "firstName": "John",
-      "lastName": "Doe",
-      "gender": "male",
-      "age": 32,
-      "temp": 36,
-      "BP": "100/60",
-      "elment": "Taiphoid",
-      "treated": false,
-      "symptoms": []
+      "symptoms": [
+        "Fever",
+        "Cough"
+      ],
+      "treated": true,
+      "id": "010"
     },
     {
       "id": "011",
@@ -170,16 +166,14 @@
       "id": "013"
     },
     {
-      "id": "014",
-      "firstName": "Patricia",
-      "lastName": "Cheptoo",
-      "gender": "female",
-      "age": 17,
-      "temp": 40,
-      "BP": "130/90",
-      "elment": "Degue",
+      "symptoms": [
+        "Fever",
+        "Cough",
+        "Shortness of breath",
+        "Fatigue"
+      ],
       "treated": true,
-      "symptoms": []
+      "id": "014"
     }
   ]
 }
